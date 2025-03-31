@@ -15,11 +15,11 @@ Team members: **Maksim Ilin, Rail Sabirov, Ivan Ilyichev**
 ### Overview
 
 > [!IMPORTANT]
-> You can test the API by accesssing the provided link.
+> You can test the API by accessing the provided link.
 > 
 > However, you can not test it locally, since the database credentials are hidden from the GitHub repo for security reasons.
 
-> Swagger documentation is available **[only in Innopolis University network]**:
+> Swagger documentation is available **[only within Innopolis University network]**:
 > 
 > [10.90.137.53:5000/apidocs/](http://10.90.137.53:5000/apidocs/)
 
