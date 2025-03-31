@@ -8,3 +8,28 @@ Team members: **Maksim Ilin, Rail Sabirov, Ivan Ilyichev**
 - "parsing" folder contains scrapy projects for parsing all data from transfermarkt. "parsedData" folder inside contains all parsed data, that was/will be analyzed and cleaned in "analysis".
 - "json_to_postgresql" contains a Jupyter notebook that converts prepared cleaned json files (from the "analysis folder") into psql tables. The database server is hosted on an Innopolis University virtual machine.
 - "app" contains Flask API.
+
+---
+
+## Flask REST API for Data Processing
+### Overview
+
+> [!IMPORTANT]
+> You can test the API by accesssing the provided link.
+> 
+> However, you can not test it locally, since the database credentials are hidden from the GitHub repo for security reasons.
+
+> Swagger documentation is available **[only in Innopolis University network]**:
+> 
+> [10.90.137.53:5000/apidocs/](http://10.90.137.53:5000/apidocs/)
+
+This API serves as a backend interface to provide JSON-formatted data from a PostgreSQL database for frontend application. Key features include:
+* Dynamic filtering
+* Null values handling
+* Sorting
+
+---
+
+*The Flask application and the database are hosted on an Innopolis University virtual machine.*
+
+*You can get acquainted with the database tables structure in json_to_postgresql/psql_database.ipynb*
