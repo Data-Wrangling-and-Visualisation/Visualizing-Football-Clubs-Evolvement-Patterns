@@ -60,14 +60,14 @@
 
   Promise.all([
     d3.json("data/world.geojson"),
-    d3.json("data/average_team_cost.json"),
-    d3.json("data/full_players_costs.json"),
-    d3.json("data/legionnaires_total_amount.json"),
-    d3.json("data/national_teams_players_total_amount.json"),
-    d3.json("data/total_average_age.json"),
+    d3.json("/api/average_team_cost"),
+    d3.json("/api/full_players_costs"),
+    d3.json("/api/legionnaires_total_amount"),
+    d3.json("/api/national_teams_players_total_amount"),
+    d3.json("/api/total_average_age"),
     d3.json("data/country_names.json"),
-    d3.json("data/club_info.json"),
-    d3.json("data/country_info.json")
+    d3.json("/api/club_info"),
+    d3.json("/api/country_info")
   ]).then(([geoDataResponse,
     averageTeamCostResponse,
     fullPlayersCostResponse,
@@ -408,11 +408,11 @@
 
   function updateCountryInfoTable(selectedMeasure, selectedYear, countryClubs) {
     const dataFiles = {
-      "Average Team Cost": "data/total_team_cost.json",
-      "Full Players Cost": "data/total_team_cost.json",
-      "Legionnaires Total Amount": "data/legionnaires_per_team.json",
-      "National Team Players Total Amount": "data/clubs_and_national_players.json",
-      "Total Average Age": "data/average_age_per_team.json"
+      "Average Team Cost": "/api/total_team_cost",
+      "Full Players Cost": "/api/total_team_cost",
+      "Legionnaires Total Amount": "/api/legionnaires_per_team",
+      "National Team Players Total Amount": "/api/clubs_and_national_players",
+      "Total Average Age": "/api/average_age_per_team"
     };
 
     const measureKeys = {

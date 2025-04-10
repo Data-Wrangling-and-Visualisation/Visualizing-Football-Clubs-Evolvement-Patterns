@@ -29,7 +29,9 @@ This API serves as a backend interface to provide JSON-formatted data from a Pos
 * Sorting
 
 ---
-- Vizualization: https://railsab.github.io/dwProjectFootballviz/
+Vizualization:
+- http://10.90.136.56/ with API but only within Innopolis University network
+- https://railsab.github.io/dwProjectFootballviz/ without API
 ---
 *The Flask application and the database are hosted on an Innopolis University virtual machine.*
 

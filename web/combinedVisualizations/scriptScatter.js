@@ -41,16 +41,16 @@ let trajectoryData = [];
 
 
 Promise.all([
-  d3.json("data/club_info.json"),
-  d3.json("data/country_info.json"),
-  d3.json("data/average_age_per_team.json"),
-  d3.json("data/club_titles.json"),
-  d3.json("data/legionnaires_per_team.json"),
-  d3.json("data/clubs_and_national_players.json"),
-  d3.json("data/team_size_ratio.json"),
-  d3.json("data/total_team_cost.json"),
-  d3.json("data/transfer_balance.json"),
-  d3.json("data/average_points_per_team.json"),
+  d3.json("/api/club_info"),
+  d3.json("/api/country_info"),
+  d3.json("/api/average_age_per_team"),
+  d3.json("/api/club_titles"),
+  d3.json("/api/legionnaires_per_team"),
+  d3.json("/api/clubs_and_national_players"),
+  d3.json("/api/team_size_ratio"),
+  d3.json("/api/total_team_cost"),
+  d3.json("/api/transfer_balance"),
+  d3.json("/api/average_points_per_team"),
 ]).then(([clubInfoData, countryInfoData, ...measureData]) => {
   clubInfo = clubInfoData;
   countryInfo = countryInfoData;
