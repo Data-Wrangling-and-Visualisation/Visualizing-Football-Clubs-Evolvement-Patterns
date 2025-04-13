@@ -28,11 +28,16 @@ This API serves as a backend interface to provide JSON-formatted data from a Pos
 * Null values handling
 * Sorting
 
+*The Flask application and the database are hosted on an Innopolis University virtual machine.*
+
+*You can get acquainted with the database tables structure in json_to_postgresql/psql_database.ipynb*
 ---
 Vizualization:
 - http://10.90.136.56/ with API but only within Innopolis University network
 - https://railsab.github.io/dwProjectFootballviz/ without API
 ---
-*The Flask application and the database are hosted on an Innopolis University virtual machine.*
-
-*You can get acquainted with the database tables structure in json_to_postgresql/psql_database.ipynb*
+# What was done
+- Fixed frontend
+- Configured frontend work with API
+- Fixed API endpoints
+- Deployed frontend and API on university VM
