@@ -1,8 +1,9 @@
+// Initialize global variables for data, measures, and state management
 let clubInfo = [];
 let countryInfo = [];
 let dataByMeasure = {};
-let xMeasure = "teamCost";
-let yMeasure = "titles";
+let xMeasure = "teamCost"; // Default X-axis measure
+let yMeasure = "titles"; // Default Y-axis measure
 const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
 let currentYear = 2015;
 let previousYear = 2015;
@@ -13,42 +14,48 @@ let axisChanged = false;
 let colorScale;
 let selectedCountry = "all";
 
+// Define margins and dimensions for the scatter plot
 const margin = { top: 50, right: 50, bottom: 70, left: 70 };
-
 const width = 800;
 const height = 450;
 
+// Create the SVG container for the scatter plot
 const svg = d3
   .select("#scatter-plot")
   .attr("width", width)
   .attr("height", height);
 
+// Append groups for axes and grid lines
 svg.append("g").attr("class", "x-axis");
 svg.append("g").attr("class", "y-axis");
 const gridContainer = svg.append("g").attr("class", "grid-container");
 
+// Define scales for X and Y axes
 let xScale = d3.scaleLinear().range([margin.left, width - margin.right]);
 let yScale = d3.scaleLinear().range([height - margin.bottom, margin.top]);
 
+// Get references to axis selection dropdowns
 const yAxisSelect = document.getElementById("y-axis-select");
 const xAxisSelect = document.getElementById("x-axis-select");
 
+// Create a container for trajectory paths
 const trajectoryContainer = svg.append("g").attr("class", "trajectory-container");
 const toggleTrajectoryCheckbox = document.getElementById('toggle-trajectory');
 let showTrajectory = toggleTrajectoryCheckbox.checked;
 
+// Initialize trajectory data and mappings for club and country names
 let trajectoryData = [];
 let clubNameMapping = {};
 let countryNameMapping = {};
 
-// Load the club name mapping
+// Load club name mapping from JSON
 d3.json("data/club_name_mapping.json").then((mappingData) => {
   clubNameMapping = Object.fromEntries(
     mappingData.map((entry) => [entry.TeamName, entry.TranslatedName])
   );
 });
 
-// Load the country name mapping
+// Load country name mapping from JSON
 d3.json("data/country_name_mapping.json").then((mappingData) => {
   countryNameMapping = Object.fromEntries(
     mappingData.map((entry) => [entry.NationalTeamName, entry.TranslatedName])
@@ -65,6 +72,7 @@ function getEnglishCountryName(originalName) {
   return countryNameMapping[originalName] || originalName;
 }
 
+// Load data from multiple APIs and initialize the scatter plot
 Promise.all([
   d3.json("api/club_info"),
   d3.json("api/country_info"),
@@ -135,8 +143,6 @@ Promise.all([
   xAxisSelect.disabled = false;
 
 
-
-
   updateScatterPlot();
 
 
@@ -169,7 +175,7 @@ Promise.all([
   });
 });
 
-
+// Function to update grid lines on the scatter plot
 function updateGrid() {
   gridContainer.selectAll(".grid-line").remove();
 
@@ -202,6 +208,7 @@ function updateGrid() {
     .attr("stroke-dasharray", "4,4");
 }
 
+// Function to update the scatter plot based on selected measures and year
 function updateScatterPlot() {
   if (!xMeasure || !yMeasure) {
     svg.selectAll("circle").remove();
@@ -245,6 +252,7 @@ function updateScatterPlot() {
   drawCircles(currentYear);
 }
 
+// Function to update club information displayed in the sidebar
 function updateClubInfo(club, year) {
   const country = getEnglishCountryName(
     countryInfo.find((c) =>
@@ -276,7 +284,7 @@ function updateClubInfo(club, year) {
   `);
 }
 
-
+// Event listener for Y-axis measure selection
 yAxisSelect.addEventListener("change", () => {
   yMeasure = yAxisSelect.value;
   xAxisSelect.disabled = false;
@@ -318,6 +326,7 @@ yAxisSelect.addEventListener("change", () => {
   }
 });
 
+// Event listener for X-axis measure selection
 xAxisSelect.addEventListener("change", () => {
   xMeasure = xAxisSelect.value;
 
@@ -339,7 +348,7 @@ xAxisSelect.addEventListener("change", () => {
   }
 });
 
-
+// Function to update dashed lines for highlighting selected club
 const updateDashedLines = (d, year) => {
   svg.selectAll(".dashed-line").remove();
 
@@ -367,7 +376,7 @@ const updateDashedLines = (d, year) => {
 const legendContainer = d3.select("#scatter-legend-container");
 
 
-
+// Function to draw circles representing clubs on the scatter plot
 function drawCircles(year) {
   let circles = svg.selectAll("circle").data(clubInfo.filter((d) => {
     if (selectedCountry === "all") return true;
@@ -481,6 +490,7 @@ function drawCircles(year) {
   }
 }
 
+// Event listener for clicking on the SVG to reset selection
 svg.on("click", (event) => {
   if (event.target.tagName === "svg") {
     trajectoryContainer.selectAll("path").remove();
@@ -494,6 +504,7 @@ svg.on("click", (event) => {
   }
 });
 
+// Event listener for toggling trajectory visibility
 toggleTrajectoryCheckbox.addEventListener('change', (event) => {
   showTrajectory = event.target.checked;
   if (!showTrajectory) {
@@ -506,7 +517,7 @@ toggleTrajectoryCheckbox.addEventListener('change', (event) => {
   }
 });
 
-
+// Function to draw a new trajectory for the selected club
 const drawNewTrajectory = (year) => {
   if (!showTrajectory) return;
   const partialData = trajectoryData.slice(0, years.indexOf(year) + 1);
@@ -539,6 +550,7 @@ const drawNewTrajectory = (year) => {
   }
 }
 
+// Function to update trajectory during timeline playback
 const updateTrajectory = (year) => {
 
   if (trajectoryData.length === 0 || !selectedClub) return;
@@ -579,11 +591,12 @@ const updateTrajectory = (year) => {
   previousYear = currentYear;
 };
 
+// Initialize timeline years and playback controls
 const timelineYearsContainer = document.querySelector('.timeline-years');
 const playPauseBtn = document.querySelector('.play-pause-btn');
 let intervalId = null;
 
-
+// Populate timeline with year elements
 years.forEach((year, index) => {
   const yearElement = document.createElement('span');
   yearElement.textContent = year;
@@ -596,7 +609,7 @@ years.forEach((year, index) => {
 const yearElements = document.querySelectorAll('.timeline-years span');
 let currentIndex = 0;
 
-
+// Event listeners for timeline year clicks
 yearElements.forEach((yearElement, index) => {
   yearElement.addEventListener('click', () => {
     if (isTimelineRunning) return;
@@ -652,7 +665,7 @@ const updateTrajectoryTimelineYearClick = (year) => {
   updateClubInfo(selectedClub, year);
 };
 
-
+// Function to switch to the next year in the timeline
 function switchToNextYear() {
   yearElements[currentIndex].classList.remove('active');
   currentIndex = (currentIndex + 1) % yearElements.length;
@@ -665,7 +678,7 @@ function switchToNextYear() {
   }
 }
 
-
+// Event listener for play/pause button
 playPauseBtn.addEventListener('click', () => {
   if (intervalId) {
     clearInterval(intervalId);

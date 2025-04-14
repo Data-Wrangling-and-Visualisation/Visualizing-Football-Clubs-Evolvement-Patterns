@@ -8,20 +8,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f9eadb; /* Slightly whiter champagne-like color */
+    background-color: #f9eadb;
 }
 
-/* Update font styles for headings and text */
 h1, h2 {
     font-family: 'Poppins', Arial, sans-serif;
     font-weight: 600;
-    font-size: 1.8rem; /* Adjust heading size */
+    font-size: 1.8rem; 
 }
 
 p, label, select, button {
     font-family: 'Poppins', Arial, sans-serif;
     font-weight: 300;
-    font-size: 0.9rem; /* Adjust text size */
+    font-size: 0.9rem;
 }
 
 h1 {
@@ -32,14 +31,14 @@ h1 {
 .visualization-section {
     width: 95%;
     margin-bottom: 40px;
-    padding: 15px; /* Adjust padding */
-    background-color: #f0f0f0; /* Slightly darker shade */
+    padding: 15px; 
+    background-color: #f0f0f0; 
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .visualization-section h2 {
-    color: #333; /* Match text color to the background */
+    color: #333; 
     margin-top: 0;
 }
 
@@ -52,45 +51,45 @@ h1 {
     width: 100%;
     height: auto;
     margin: 20px auto;
-    gap: 10px; /* Adjust gap */
+    gap: 10px; 
 }
 
 #scatter-legend-container {
-    flex: 0 0 16%; /* Reduce width */
+    flex: 0 0 16%; 
     background-color: #f9f9f9;
     border: 4px solid #ccc;
     border-radius: 10px;
-    padding: 10px; /* Adjust padding */
+    padding: 10px; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
-    font-size: 12px; /* Reduce font size */
+    font-size: 12px; 
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 5px;
     height: auto;
     margin-left: 5px;
-    max-height: 78vh; /* Reduce height */
+    max-height: 78vh; 
 }
 
 .scatter-container {
-    flex: 0 0 50%; /* Reduce width */
+    flex: 0 0 50%; 
     display: flex;
     flex-direction: column;
     align-items: center;
     height: auto;
-    max-height: 78vh; /* Reduce height */
+    max-height: 78vh;
 }
 
 #scatter-plot {
     width: 100%;
-    height: 65vh; /* Reduce height */
+    height: 65vh; 
     border: 7px solid #ccc;
     border-radius: 10px;
 }
 
 .club-info {
-    flex: 0 0 16%; /* Reduce width */
-    padding: 10px; /* Adjust padding */
+    flex: 0 0 16%; 
+    padding: 10px; 
     border: 4px solid #ccc;
     border-radius: 10px;
     background-color: #ffffff;
@@ -100,8 +99,8 @@ h1 {
     text-align: center;
     height: auto;
     margin-right: 20px;
-    max-height: 78vh; /* Reduce height */
-    font-size: 12px; /* Reduce font size */
+    max-height: 78vh;
+    font-size: 12px; 
 }
 
 .club-info img {
@@ -114,7 +113,7 @@ h1 {
 .club-info h3 {
     font-size: 20px;
     margin: 10px 0;
-    color: #333; /* Update color to #333 */
+    color: #333; 
 }
 
 .club-info p {
@@ -182,8 +181,8 @@ h1 {
 }
 
 button {
-    background-color: #f9eadb; /* Replace button background color */
-    color: #333; /* Match text color */
+    background-color: #f9eadb; 
+    color: #333; 
     border: none;
     padding: 10px 15px;
     border-radius: 4px;
@@ -193,7 +192,7 @@ button {
 }
 
 button:hover {
-    background-color: #e6d3c5; /* Slightly darker shade for hover */
+    background-color: #e6d3c5; 
 }
 
 .controls {
@@ -217,7 +216,7 @@ button:hover {
     justify-content: center;
     margin: 15px auto;
     padding: 15px 20px;
-    background: linear-gradient(135deg, #f9eadb, #e6d3c5); /* Gradient in the same color palette */
+    background: linear-gradient(135deg, #f9eadb, #e6d3c5);
     border-radius: 25px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     width: fit-content;
@@ -225,7 +224,7 @@ button:hover {
 
 .timeline-btn {
     background: white;
-    color: #333; /* Match text color to the background */
+    color: #333; 
     border: none;
     border-radius: 50%;
     width: 50px;
@@ -248,7 +247,7 @@ button:hover {
     margin: 0 20px;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    color: #666; /* Slightly grayish color */
+    color: #666; 
 }
 
 .timeline-years span {
@@ -259,14 +258,14 @@ button:hover {
 }
 
 .timeline-years span.active {
-    background: #f9eadb; /* Replace active background color */
-    color: #333; /* Match text color */
+    background: #f9eadb; 
+    color: #333;
     font-weight: bold;
 }
 
 .timeline-years span:hover {
-    background: #f9eadb; /* Replace hover background color */
-    color: #333; /* Match text color */
+    background: #f9eadb; 
+    color: #333;
 }
 
 .toggle-container {
@@ -283,7 +282,7 @@ button:hover {
     width: 20px;
     height: 20px;
     cursor: pointer;
-    accent-color: #f9eadb; /* Set checkbox color */
+    accent-color: #f9eadb;
 }
 
 .toggle-label {
@@ -340,9 +339,9 @@ button:hover {
 
 /* Timeline buttons for Heatmap */
 #heatmap-section .timeline button {
-    background-color: #f9eadb; /* Replace button background color */
-    color: #333; /* Match text color */
-    border: 1px solid #333; /* Update border color to #333 */
+    background-color: #f9eadb; 
+    color: #333; 
+    border: 1px solid #333; 
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
@@ -351,12 +350,12 @@ button:hover {
 }
 
 #heatmap-section .timeline button:hover {
-    background-color: #e6d3c5; /* Slightly darker shade for hover */
+    background-color: #e6d3c5; 
     color: #0056b3;
 }
 
 #heatmap-section #current-year {
-    color: #333; /* Match text color */
+    color: #333;
 }
 
 #heatmap-section .timeline > * {
@@ -370,10 +369,10 @@ button:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 100vh; /* Full viewport height */
-    color: #333; /* Dark text color */
+    height: 100vh;
+    color: #333; 
     padding: 20px;
-    box-shadow: none; /* Remove shadow */
+    box-shadow: none; 
 }
 
 .title-segment h2 {
@@ -389,7 +388,7 @@ button:hover {
 }
 
 .title-segment button {
-    background-color: #6c757d; /* Less bright grayish color */
+    background-color: #6c757d; 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -400,10 +399,10 @@ button:hover {
 }
 
 .title-segment button:hover {
-    background-color: #5a6268; /* Slightly darker on hover */
+    background-color: #5a6268; 
 }
 
-/* Add smooth scrolling for better transition to visualizations */
+
 html {
     scroll-behavior: smooth;
 }
