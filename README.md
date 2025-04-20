@@ -2,7 +2,7 @@
 A Project for Data Wrangling and Visualization Course, Spring 2025. \
 This project aims to extract and emphasize key trends in worldwide club and country football, considering multiple and diverse metrics to balance outcomes quite well. Some of the included metrics are: number of club players involved in national teams, transfer balance of clubs, average age of players within a club, etc. \
 Team members: **Maksim Ilin, Rail Sabirov, Ivan Ilyichev**\
-The Project structure is as follows:\
+The Project structure is as follows:
 
 ```
 .
@@ -21,6 +21,12 @@ The Project structure is as follows:\
 │   ├── team_size_ratio/
 │   ├── total_team_cost/
 │   └── transfer_balance/
+├── app/
+│   ├── db/
+│   ├── routes/
+│   ├── app.py
+│   ├── config.py
+│   └── requirements.txt
 ├── json_to_postgresql/
 │   └── psql_database.ipynb
 ├── parsing/
@@ -48,7 +54,7 @@ The Project structure is as follows:\
  
 - "web" folder contains folders and files (data, sciptScatter.js, sciptMap.js, styles.css, index.html) for two visualizations (Teams Scatter and World HeatMap). Deployed and hosted on an Innopolis University virtual machine.
 - "parsing" folder contains scrapy projects for parsing all data from transfermarkt. "parsedData" folder inside contains all parsed data, that was/will be analyzed and cleaned in "analysis".
-- "json_to_postgresql" contains a Jupyter notebook that converts prepared cleaned json files (from the "analysis folder") into psql tables. The database server is hosted on an Innopolis University virtual machine.
+- "json_to_postgresql" contains a Jupyter notebook that converts prepared cleaned json files (from the "analysis" folder) into PostgreSQL tables. The database server is hosted on an Innopolis University virtual machine.
 - "app" contains Flask API.
 
 ---
@@ -76,27 +82,69 @@ The Project structure is as follows:\
 ### Used technologies: 
 - Numpy, Pandas, Matplotlib, Seaborn, ipywidgets
 
+---
 
-## Flask REST API for Data Processing
-### Overview
+## Backend
 
-> [!IMPORTANT]
-> You can test the API by accessing the provided link.
-> 
-> However, you can not test it locally, since the database credentials are hidden from the GitHub repo for security reasons.
+### Swagger UI
 
-> Swagger documentation is available **[only within Innopolis University network]**:
-> 
-> [10.90.137.53:5000/apidocs/](http://10.90.137.53:5000/apidocs/)
+- [http://10.90.137.53:5000/apidocs/](http://10.90.137.53:5000/apidocs/) **(Innopolis University Network Only)**
 
-This API serves as a backend interface to provide JSON-formatted data from a PostgreSQL database for frontend application. Key features include:
-* Dynamic filtering
-* Null values handling
-* Sorting
+### Technologies Used
 
-*The Flask application and the database are hosted on an Innopolis University virtual machine.*
+- **Database System**: PostgreSQL
+- **Backend Framework**: Flask for core API development
+- **API Documentation**: Flask-RESTx with integrated Swagger support
+- **Database Connectivity**: psycopg2 for PostgreSQL integration
+- **Web Server**: Gunicorn for production deployment
+- **HTTP Requests**: Requests for external API interactions
+- **WSGI Utilities**: Werkzeug for WSGI web application gateway
 
-*You can get acquainted with the database tables structure in json_to_postgresql/psql_database.ipynb*
+### Flask API
+
+The RESTful API acts as an intermediary layer between the PostgreSQL database and frontend application, delivering data in standardized JSON format.
+
+All routes are grouped under the ```/api``` blueprint.
+
+### Database
+
+Tables for the database are constructed from the pre-processed JSON format. The database is in the third normal form (3NF), which allows efficient and well-structured queries to be performed.
+The database has two users: 
+- The root user, who has full privileges
+- The read-only user. Restricted to SELECT operations only. This account is used by the API to enforce security and prevent unintended data manipulation
+
+The database structure is as follows:
+
+```sql
+teams (
+    team_id INT PRIMARY KEY,
+    team_name TEXT NOT NULL,
+    number_of_cups INT,
+    image_link TEXT,
+    national_team_id INT REFERENCES national_teams(national_team_id)
+);
+
+
+national_teams (
+    national_team_id INT PRIMARY KEY,
+    national_team_name TEXT NOT NULL
+);
+
+team_yearly_stats (
+    team_id INT REFERENCES teams(team_id),
+    year INT,
+    average_points DECIMAL(3,2),
+    average_age DECIMAL(3,1),    
+    number_of_titles_this_year INT,
+    team_cost INT,
+    team_size_ratio DECIMAL(4,2),
+    players_in_national_team INT,
+    legionnaires INT,
+    transfer_balance INT,
+    PRIMARY KEY (team_id, year)
+);
+```
+
 ---
 ## Web
 
