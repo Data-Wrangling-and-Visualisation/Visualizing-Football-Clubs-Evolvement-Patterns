@@ -100,6 +100,8 @@ The Project structure is as follows:
 - **HTTP Requests**: Requests for external API interactions
 - **WSGI Utilities**: Werkzeug for WSGI web application gateway
 
+---
+
 ### Flask API
 
 The RESTful API acts as an intermediary layer between the PostgreSQL database and frontend application, delivering data in standardized JSON format.
