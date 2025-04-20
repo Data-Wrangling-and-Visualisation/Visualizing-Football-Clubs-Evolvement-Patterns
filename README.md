@@ -52,6 +52,26 @@ The Project structure is as follows:\
 - "app" contains Flask API.
 
 ---
+## Parsing Process
+
+### Scrapy Framework:
+- The project uses Scrapy spiders to scrape data from the transfermarkt.world website.
+- Each spider is responsible for extracting specific types of data, such as average points, club images, national team rosters, transfer balances, etc.
+
+### Data Sources:
+- The spiders fetch data from structured pages on the website, using XPath or CSS selectors to extract relevant information.
+
+### Data Processing:
+- Extracted data is processed and saved into JSON files (e.g., `average_points.json`, `sorted_teams.json`).
+- Additional Python scripts (e.g., `main.py`) are used to process the scraped data further, such as identifying missing years or calculating derived metrics.
+
+### Technologies Used:
+- **Python**: The primary programming language for writing spiders and processing data.
+- **Scrapy**: A web scraping framework for crawling websites and extracting data.
+
+### Output:
+- The processed data is saved in JSON files, which can be used for further analysis or visualization.
+---
 ## Analysis process
 ### Used technologies: 
 - Numpy, Pandas, Matplotlib, Seaborn, ipywidgets
@@ -78,11 +98,88 @@ This API serves as a backend interface to provide JSON-formatted data from a Pos
 
 *You can get acquainted with the database tables structure in json_to_postgresql/psql_database.ipynb*
 ---
-Vizualization:
-- http://10.90.136.56/ with API but only within Innopolis University network
-- https://railsab.github.io/dwProjectFootballviz/ without API
+## Web
+
+### Deployed Product
+
+- **With API (Innopolis University Network Only)**: [http://10.90.136.56/](http://10.90.136.56/)
+- **Without API (Public)**: [https://railsab.github.io/dwProjectFootballviz/](https://railsab.github.io/dwProjectFootballviz/)
+
+### Technologies Used
+
+- **Frontend**: HTML, CSS, JavaScript
+- **Visualization Library**: [D3.js](https://d3js.org/) for creating interactive visualizations
+- **Web Server**: Nginx (configured via Docker)
+- **Styling**: Custom CSS with Google Fonts integration
+- **Data Formats**: JSON for data exchange
+
 ---
-# What was done
+
+### Features
+
+#### 1. **Scatter Plot Visualization**
+   - Analyze club performance metrics such as:
+     - Number of titles
+     - Transfer balance
+     - Average points per match
+     - Team cost
+     - Number of national team players
+     - Number of legionnaires
+     - Team average age
+     - Team size ratio
+   - Compare metrics on X and Y axes with dynamic selection.
+   - View trajectories of clubs over time.
+   - Clubs are represented as circles.
+   - **Point Size**: The size of each point depends on the number of cups won by the club.
+   - X and Y axes are dynamically adjustable.
+   - Trajectories show changes over time for selected clubs.
+   - **Dynamic Axis Selection**: Choose metrics for X and Y axes.
+   - **Club Trajectories**: Toggle trajectory visibility for clubs over time.
+   - **Country Filter**: Filter clubs by country.
+   - **Detailed Club Info**: Click on a club to view its details.
+
+#### 2. **Heatmap Visualization**
+   - Explore global football metrics by country, including:
+     - Average team cost
+     - Total players' cost
+     - Number of legionnaires
+     - National team players
+     - Average age of players
+   - Interactive map with zoom and country selection.
+   - Countries are color-coded based on selected metrics.
+   - A legend dynamically updates to reflect the metric scale.
+   - **Country Selection**: Click on a country to view its stats.
+   - **Zoom and Pan**: Explore the map with zoom controls.
+   - **Legend**: Dynamic legend for metric scales.
+   - **Country-to-Scatter Navigation**: Navigate from heatmap to scatter plot for selected countries.
+
+#### 3. **Dynamic Timeline**
+   - Navigate through data across multiple years (2015–2024).
+   - Play/pause timeline animations for both scatter plot and heatmap.
+   - Scatter plot and heatmap update in sync with the timeline.
+
+#### 4. **Country and Club Details**
+   - View detailed information about selected countries and clubs.
+   - Navigate between heatmap and scatter plot for deeper insights.
+
+---
+
+### How to Run
+
+1. **Using Docker**:
+   - Ensure the `data/` and `api/` endpoints are accessible.
+   - Build the Docker image:
+     ```bash
+     docker build -t football-viz .
+     ```
+   - Run the container:
+     ```bash
+     docker run -p 80:80 football-viz
+     ```
+   - Open the application in your browser at `http://localhost`.
+
+---
+# What was done (checkpoint 2)
 - Fixed frontend
 - Configured frontend work with API
 - Fixed API endpoints
