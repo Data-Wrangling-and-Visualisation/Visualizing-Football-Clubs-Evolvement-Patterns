@@ -51,7 +51,7 @@ The Project structure is as follows:
         └── styles.css
 ```
 
- 
+- "analysis" folder contains folders and file for Exploratory Data Analysis (EDA) and preprocessing for further visualizations on a frontend side.
 - "web" folder contains folders and files (data, sciptScatter.js, sciptMap.js, styles.css, index.html) for two visualizations (Teams Scatter and World HeatMap). Deployed and hosted on an Innopolis University virtual machine.
 - "parsing" folder contains scrapy projects for parsing all data from transfermarkt. "parsedData" folder inside contains all parsed data, that was/will be analyzed and cleaned in "analysis".
 - "json_to_postgresql" contains a Jupyter notebook that converts prepared cleaned json files (from the "analysis" folder) into PostgreSQL tables. The database server is hosted on an Innopolis University virtual machine.
@@ -79,8 +79,15 @@ The Project structure is as follows:
 - The processed data is saved in JSON files, which can be used for further analysis or visualization.
 ---
 ## Analysis process
-### Used technologies: 
-- Numpy, Pandas, Matplotlib, Seaborn, ipywidgets
+
+### Data Obtaining From "Parsing" Folder
+- Data from "Parsing" folder were extracted and used with help of Numpy and Pandas.
+
+### Exploratory Data Analysis
+- After extracting, data were visualized to have a first glance on it with help of Matplotlib, Seaborn, and ipywidgets.
+
+### Preprocessed Data Storing
+- At the end, data were put into json files as required for further visualizations on a frontend side.
 
 ---
 
